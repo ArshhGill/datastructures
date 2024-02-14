@@ -3,6 +3,6 @@
 This repo includes sorting and searching datastructures from my DSA class and others, written in multiple languages, each on their own branch.
 ## MOC
 - [Master](https://github.com/ArshhGill/datastructures/tree/master) (Empty for now)
-- [GoLang](https://github.com/ArshhGill/datastructures/tree/golang)
+- [Go](https://github.com/ArshhGill/datastructures/tree/go)
 - [C++](https://github.com/ArshhGill/datastructures/tree/cpp)
 
