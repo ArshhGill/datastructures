@@ -99,7 +99,7 @@ class LinkedList {
             err("Index out of bounds!");
         }
         this->size--; // decremented the size here.
-        if (this->size == 1) {
+        if (this->size == 0) {
             this->head = nullptr;
             delete this->tail;
             this->tail = nullptr;
@@ -138,7 +138,9 @@ int main() {
     ll.append(69);
     ll.insertAt(2, 420);
     ll.printList();
-    ll.removeAt(2);
+    ll.removeAt(0);
+    ll.removeAt(0);
+    ll.removeAt(0);
     ll.printList();
     return 0;
 }
