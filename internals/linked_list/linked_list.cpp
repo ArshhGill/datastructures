@@ -105,7 +105,8 @@ class LinkedList {
             this->tail = nullptr;
             return;
         }
-        if (idx == 0) {
+        if (idx == 0) { // (idx == 0) here works as we already decremented the this->size on line 101.
+
             Node *nextPtr = this->head->next;
             nextPtr->prev = nullptr;
             delete this->head;
