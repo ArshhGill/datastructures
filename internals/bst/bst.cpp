@@ -39,6 +39,20 @@ void inorder(Node *root) {
     inorder(root->right);
 }
 
+bool searcher(Node *root, int val) {
+    if (!root) {
+        return false;
+    }
+
+    if (root->val == val) {
+        return true;
+    } else if (val < root->val) {
+        return searcher(root->left, val);
+    } else {
+        return searcher(root->right, val);
+    }
+}
+
 // get val, insert, delete, search, findMin, findMax, findHeight,
 // levelordertraversal, preOrder, inOrder, postOrder
 
@@ -49,7 +63,6 @@ int main() {
     root = insertNode(root, 0);
     root = insertNode(root, 69);
 
-    inorder(root);
-
+    cout << searcher(root, 69) << endl; // deep shit
     return 0;
 }
