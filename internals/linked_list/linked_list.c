@@ -81,7 +81,7 @@ void prepend(int val) {
 
 void insertAt(int idx, int val) {
     if (idx > ll->size) {
-        printf("Index out of bounds!");
+        printf("Index out of bounds!\n");
         return;
     }
     if (idx == 0) {
@@ -107,6 +107,56 @@ void insertAt(int idx, int val) {
     runner->prev = nn;
 }
 
+void removeAt(int idx) {
+    if (idx >= ll->size) {
+        printf("Index out of bounds!\n");
+        return;
+    }
+    ll->size--;
+    if (ll->size == 0) {
+        ll->head = NULL;
+        free(ll->tail);
+        ll->tail = NULL;
+        return;
+    }
+    if (idx == 0) {
+        Node *nn = ll->head->next;
+        nn->prev = NULL;
+        free(ll->head);
+        ll->head = nn;
+        return;
+    } else if (idx == ll->size) {
+        Node *nn = ll->tail->prev;
+        nn->next = NULL;
+        free(ll->tail);
+        ll->tail = nn;
+        return;
+    }
+
+    Node *runner = ll->head;
+
+    for (int i = 0; i < idx; i++) {
+        runner = runner->next;
+    }
+
+    runner->prev->next = runner->next;
+    runner->next->prev = runner->prev;
+    free(runner);
+}
+
+int searcher(int val) {
+    Node *runner = ll->head;
+    int idx = 0;
+    while (runner) {
+        if (runner->val == val) {
+            return idx;
+        }
+        runner = runner->next;
+        idx++;
+    }
+    return -1;
+}
+
 int main() {
     printf("hey\n");
     ll = createLl();
@@ -116,7 +166,9 @@ int main() {
     append(4);
     prepend(0);
     insertAt(1, 69);
+    removeAt(9);
     printer();
-
+    printf("\n");
+    printf("%d\n", searcher(3));
     return 0;
 }
