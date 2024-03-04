@@ -79,14 +79,44 @@ void prepend(int val) {
     ll->head = nn;
 }
 
+void insertAt(int idx, int val) {
+    if (idx > ll->size) {
+        printf("Index out of bounds!");
+        return;
+    }
+    if (idx == 0) {
+        prepend(val);
+        return;
+    }
+    if (idx == ll->size) {
+        append(val);
+        return;
+    }
+
+    Node *nn = createNode(val);
+    Node *runner = ll->head;
+    ll->size++;
+
+    for (int i = 0; i < idx; i++) {
+        runner = runner->next;
+    }
+
+    nn->next = runner;
+    nn->prev = runner->prev;
+    runner->prev->next = nn;
+    runner->prev = nn;
+}
+
 int main() {
     printf("hey\n");
     ll = createLl();
-    printer();
-    printf("\n");
     append(1);
-    append(6);
-    prepend(69);
+    append(2);
+    append(3);
+    append(4);
+    prepend(0);
+    insertAt(1, 69);
     printer();
+
     return 0;
 }
