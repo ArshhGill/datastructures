@@ -30,7 +30,7 @@
 
 # Executables
 *.exe
-LLoutput
+*output
 *.out
 *.app
 *.i*86
