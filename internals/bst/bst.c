@@ -26,6 +26,16 @@ void inorder(Node *root) {
     inorder(root->right);
 }
 
+Node *sophisticatedRunner(Node *root) {
+    if (!root) {
+        return NULL;
+    }
+    if (!root->right) {
+        return root;
+    }
+    return sophisticatedRunner(root->right);
+}
+
 Node *destroyer(Node *root, int val) {
     if (!root) {
         return NULL;
@@ -35,12 +45,19 @@ Node *destroyer(Node *root, int val) {
         root->right = destroyer(root->right, val);
     } else {
         if (!root->left && !root->right) {
-
-        } else if (!root->right) {
-
-        } else if (!root->left) {
-
+            free(root);
+        } else if (root->left && !root->right) {
+            Node *uwu = root;
+            root = root->left;
+            free(uwu);
+        } else if (root->right && !root->left) {
+            Node *uwu = root;
+            root = root->right;
+            free(uwu);
         } else {
+            Node *uwu = root;
+            root = sophisticatedRunner(root->left);
+            free(uwu);
         }
     }
     return root;
@@ -64,6 +81,7 @@ int main() {
     insert(root, 6);
     insert(root, 16);
     insert(root, 32);
+    destroyer(root, 16);
 
     printf("uwu\n");
 
