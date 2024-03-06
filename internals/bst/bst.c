@@ -26,12 +26,32 @@ void inorder(Node *root) {
     inorder(root->right);
 }
 
+Node *destroyer(Node *root, int val) {
+    if (!root) {
+        return NULL;
+    } else if (root->val > val) {
+        root->left = destroyer(root->left, val);
+    } else if (root->val < val) {
+        root->right = destroyer(root->right, val);
+    } else {
+        if (!root->left && !root->right) {
+
+        } else if (!root->right) {
+
+        } else if (!root->left) {
+
+        } else {
+        }
+    }
+    return root;
+}
+
 Node *insert(Node *root, int val) {
     if (!root) {
         return createNode(val);
     } else if (val > root->val) {
         root->right = insert(root->right, val);
-    } else if (val < root->val) {
+    } else if (val <= root->val) {
         root->left = insert(root->left, val);
     }
 
