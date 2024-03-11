@@ -10,7 +10,7 @@ struct Node {
 
 class Stack {
   public:
-    Node *top;
+    Stack() { this->top = nullptr; }
 
     void push(int val) {
         Node *newNode = createNode(val);
@@ -39,7 +39,12 @@ class Stack {
         return val;
     }
 
-    int topVal() { return !top ? -1 : top->val; }
+    int topVal() {
+        if (!top) {
+            return -1;
+        }
+        return top->val;
+    }
 
     void uwuPrinter() {
         Node *runner = top;
@@ -50,6 +55,7 @@ class Stack {
     }
 
   private:
+    Node *top;
     Node *createNode(int val) {
         Node *newNode = new Node();
         newNode->val = val;
