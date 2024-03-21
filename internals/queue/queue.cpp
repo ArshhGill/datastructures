@@ -10,6 +10,7 @@ struct Node {
 class Queue {
   private:
     Node *head = nullptr;
+    Node *tail = nullptr;
     Node *createNode(int val) {
         Node *uwu = new Node;
         uwu->val = val;
@@ -18,7 +19,16 @@ class Queue {
     }
 
   public:
-    void push(int val) {}
+    void push(int val) {
+        Node *uwu = this->createNode(val);
+        if (!head){
+            head = uwu;
+            tail = uwu;
+            return;
+        }
+
+
+    }
 
     void pop() {}
 
